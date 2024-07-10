@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
   standalone: true,
 })
 export class CodeParserPipe implements PipeTransform {
-  private chordsCatch = /\[([^\]]+)\]/gm;
+  private chordsCatch = /\[([^\]]+)\]/;
 
   transform(value: string | undefined): ParsedCode {
     const rows: string[] = value?.split('\n') ?? [];
@@ -19,7 +19,7 @@ export class CodeParserPipe implements PipeTransform {
 
     const newSection = () => {
       if (tempSection.lines.length) {
-        parsed.sections.push(tempSection);
+        parsed.sections.push({ ...tempSection });
         tempSection = {
           lines: [],
         };
@@ -54,7 +54,9 @@ export class CodeParserPipe implements PipeTransform {
 
       row = row.trim();
       let match;
+      console.log('Row', row);
       while ((match = this.chordsCatch.exec(row)) !== null) {
+        console.log('Match', match);
         if (!line.chords) {
           line.chords = [];
         }

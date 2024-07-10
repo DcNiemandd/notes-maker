@@ -31,7 +31,7 @@ cold comfort for ch[D]ange,
 And did you ex[C]change walk on part in the [Am]war
 for lead role in [G]cage?
 
-   Em G Em G Em A Em A G
+   [Em G Em G Em A Em A G]
 3.: [C]How I wish, how I wish [D]you were here.
    We're just [Am]two lost souls swimming in fish bowl,
    [G]year after year,

@@ -1,0 +1,9 @@
+@if (label) {
+<h4>{{label}}</h4>
+}
+<div class="sections">
+  @for (line of lines; track line) {
+  <app-render-line [chords]="line.chords"
+                   [lyrics]="line.lyrics"></app-render-line>
+  }
+</div>

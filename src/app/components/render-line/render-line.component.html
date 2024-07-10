@@ -1,0 +1,10 @@
+<div class="chords">
+  @for (chord of chords; track chord; let index = $index) {
+  <div class="chord"
+       [style.margin-left]="marginLeft(chord.position, index) + 'ch'"
+       [style.width]="chord.text.length + 'ch'">
+    <span>{{chord.text}}</span>
+  </div>
+  }
+</div>
+<div class="lyrics">{{lyrics}}</div>
