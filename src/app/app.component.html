@@ -1,0 +1,11 @@
+<div class="container">
+  <textarea #codeTA
+            name="code"
+            id="code"
+            class="code"
+            (input)="code = codeTA.value"
+            [value]="code"></textarea>
+  <div class="rendered">
+    <app-code-renderer [parsedCode]="code | codeParser"></app-code-renderer>
+  </div>
+</div>
