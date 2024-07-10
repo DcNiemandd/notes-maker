@@ -27,6 +27,7 @@
       },
       "configurations": {
         "production": {
+          "baseHref": "/notes-maker-sites/",
           "budgets": [
             {
               "type": "initial",
@@ -44,7 +45,8 @@
         "development": {
           "optimization": false,
           "extractLicenses": false,
-          "sourceMap": true
+          "sourceMap": true,
+          "baseHref": "/notes-maker-sites/"
         }
       },
       "defaultConfiguration": "production"

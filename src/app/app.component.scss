@@ -7,8 +7,8 @@
 }
 
 .container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-flow: row nowrap;
   gap: 16px;
   padding: 16px;
   background-color: #ddd;
@@ -17,6 +17,7 @@
   & > * {
     height: 100%;
     background-color: white;
+    flex: 1 0 0;
   }
 }
 
@@ -25,6 +26,7 @@
   outline: none;
   border: none;
   padding: 8px;
+  max-width: 600px;
 }
 
 .rendered {
