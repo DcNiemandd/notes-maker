@@ -20,11 +20,13 @@ export class RenderLineComponent implements ParsedCodeLine {
     if (index === 0 || !this.chords) {
       return position;
     }
-    return Math.max(
-      0,
-      position -
-        this.chords[index - 1].position -
-        this.chords[index - 1].text.length
-    );
+
+    const endOfLast = this.chords.slice(0, index).reduce((endOfPrev, chord) => {
+      return Math.max(
+        chord.position + chord.text.length,
+        endOfPrev + chord.text.length
+      );
+    }, 0);
+    return Math.max(0, position - endOfLast);
   }
 }

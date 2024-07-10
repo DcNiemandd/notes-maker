@@ -54,9 +54,7 @@ export class CodeParserPipe implements PipeTransform {
 
       row = row.trim();
       let match;
-      console.log('Row', row);
       while ((match = this.chordsCatch.exec(row)) !== null) {
-        console.log('Match', match);
         if (!line.chords) {
           line.chords = [];
         }
