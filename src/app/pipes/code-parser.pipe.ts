@@ -69,7 +69,7 @@ export class CodeParserPipe implements PipeTransform {
       line.lyrics = row;
       tempSection.lines.push(line);
     });
-
+    console.log(JSON.stringify(parsed));
     return parsed;
   }
 }

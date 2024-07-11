@@ -16,7 +16,6 @@
 
   & > * {
     height: 100%;
-    background-color: white;
     flex: 1 0 0;
   }
 }
@@ -27,6 +26,7 @@
   border: none;
   padding: 8px;
   max-width: 600px;
+  background-color: white;
 }
 
 .rendered {
