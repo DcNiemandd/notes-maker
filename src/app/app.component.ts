@@ -12,7 +12,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   standalone: true,
-  imports: [CodeRendererComponent, CodeParserPipe, FormsModule],
+  imports: [CodeRendererComponent, CodeParserPipe],
 })
 export class AppComponent {
   protected code: string = testNotes;

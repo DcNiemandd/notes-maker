@@ -28,6 +28,19 @@
   max-width: 600px;
 }
 
+.buttons {
+  display: flex;
+  flex-flow: column;
+  gap: 8px;
+}
+
+.input {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  gap: 8px;
+}
+
 .buttons,
 .code {
   padding: 8px;
@@ -37,8 +50,19 @@
 .code {
   resize: none;
   outline: none;
-  border: none;
+  border: 1px solid transparent;
   flex-grow: 1;
+  transition: border-color 200ms ease-in-out;
+
+  &:hover {
+    border-color: #616161;
+  }
+
+  &:focus,
+  &:focus-visible,
+  &:focus-within {
+    border-color: #232323;
+  }
 }
 
 .rendered {

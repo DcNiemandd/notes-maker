@@ -1,11 +1,14 @@
 <div class="container">
   <div class="controls">
     <div class="buttons">
-      <input #aspectRatioInput
-             type="text"
-             class="aspect-ratio"
-             [value]="aspectRatio"
-             (change)="aspectRatio = aspectRatioInput.value" />
+      <div class="input input-aspect-ratio"><label for="aspectRatio">Aspect ratio</label>
+        <input #aspectRatioInput
+               id="aspectRatio"
+               type="text"
+               class="aspect-ratio"
+               [value]="aspectRatio"
+               (change)="aspectRatio = aspectRatioInput.value" />
+      </div>
       <button (click)="saveAsJpeg()">Save as image</button>
     </div>
     <textarea #codeTA
