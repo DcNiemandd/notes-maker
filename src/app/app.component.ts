@@ -6,6 +6,7 @@ import * as htmlToImage from 'html-to-image';
 import { from, Subject, switchMap } from 'rxjs';
 import { Options } from 'html-to-image/lib/types';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import FileSaver from 'file-saver';
 
 @Component({
   selector: 'app-root',
@@ -27,7 +28,7 @@ export class AppComponent {
   @ViewChild(CodeRendererComponent, { static: true })
   private codeRenderer!: CodeRendererComponent;
 
-  private htmlToImagePromise$: Subject<Promise<string>> = new Subject();
+  private htmlToImagePromise$: Subject<Promise<Blob | null>> = new Subject();
 
   constructor(private readonly destroyRef: DestroyRef) {
     this.htmlToImagePromise$
@@ -35,22 +36,32 @@ export class AppComponent {
         switchMap((promise) => from(promise)),
         takeUntilDestroyed(this.destroyRef)
       )
-      .subscribe((dataUrl) => {
-        const link = document.createElement('a');
-        link.download =
-          this.codeRenderer.parsedCode.title +
-          ' - ' +
-          this.codeRenderer.parsedCode.subtitle +
-          '.jpeg';
-        link.href = dataUrl;
-        // link.target = '_blank';
-        link.click();
+      .subscribe((blob) => {
+        if (!blob) return;
+
+        if (window.saveAs) {
+          window.saveAs(
+            blob,
+            this.codeRenderer.parsedCode.title +
+              ' - ' +
+              this.codeRenderer.parsedCode.subtitle +
+              'png'
+          );
+        } else {
+          FileSaver.saveAs(
+            blob,
+            this.codeRenderer.parsedCode.title +
+              ' - ' +
+              this.codeRenderer.parsedCode.subtitle +
+              'png'
+          );
+        }
       });
   }
 
   protected saveAsJpeg() {
     this.htmlToImagePromise$.next(
-      htmlToImage.toJpeg(
+      htmlToImage.toBlob(
         this.codeRenderer.printRef.nativeElement,
         this.renderOptions
       )
