@@ -5,6 +5,7 @@ import {
   HostBinding,
   inject,
   Input,
+  ViewChild,
 } from '@angular/core';
 import { ParsedCode } from 'src/app/pipes/code-parser.pipe';
 import { AspectKeeperComponent } from '../aspect-keeper/aspect-keeper.component';
@@ -41,5 +42,6 @@ export class CodeRendererComponent {
   public columns: number = 1;
   @Input({ required: true }) public parsedCode!: ParsedCode;
 
-  public elementRef: ElementRef = inject(ElementRef);
+  @ViewChild('toPrintRef', { static: true })
+  public printRef!: ElementRef<HTMLDivElement>;
 }

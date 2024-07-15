@@ -51,7 +51,7 @@ export class AppComponent {
   protected saveAsJpeg() {
     this.htmlToImagePromise$.next(
       htmlToImage.toJpeg(
-        this.codeRenderer.elementRef.nativeElement,
+        this.codeRenderer.printRef.nativeElement,
         this.renderOptions
       )
     );

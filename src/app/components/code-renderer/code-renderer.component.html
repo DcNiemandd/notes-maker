@@ -1,5 +1,6 @@
 <app-aspect-keeper [aspectRatio]="aspectRatio">
-  <div class="code-content">
+  <div #toPrintRef
+       class="code-content">
     <div class="titles">
       @if (parsedCode.title) {<h1 class="title">{{parsedCode.title}}</h1>}
       @if (parsedCode.subtitle) {<h2 class="subtitle">{{parsedCode.subtitle}}</h2>}
