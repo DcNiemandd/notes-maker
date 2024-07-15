@@ -1,7 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, DestroyRef, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CodeRendererComponent } from './components/code-renderer/code-renderer.component';
 import { CodeParserPipe } from './pipes/code-parser.pipe';
+import * as htmlToImage from 'html-to-image';
+import { from, Subject, switchMap } from 'rxjs';
+import { Options } from 'html-to-image/lib/types';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +16,44 @@ import { CodeParserPipe } from './pipes/code-parser.pipe';
 })
 export class AppComponent {
   protected code: string = testNotes;
+  protected aspectRatio: string = '10/16';
+  private readonly renderOptions: Options = {
+    quality: 1,
+    pixelRatio: 3,
+  };
+
+  @ViewChild(CodeRendererComponent, { static: true })
+  private codeRenderer!: CodeRendererComponent;
+
+  private htmlToImagePromise$: Subject<Promise<string>> = new Subject();
+
+  constructor(private readonly destroyRef: DestroyRef) {
+    this.htmlToImagePromise$
+      .pipe(
+        switchMap((promise) => from(promise)),
+        takeUntilDestroyed(this.destroyRef)
+      )
+      .subscribe((dataUrl) => {
+        const link = document.createElement('a');
+        link.download =
+          this.codeRenderer.parsedCode.title +
+          ' - ' +
+          this.codeRenderer.parsedCode.subtitle +
+          '.jpeg';
+        link.href = dataUrl;
+        // link.target = '_blank';
+        link.click();
+      });
+  }
+
+  protected saveAsJpeg() {
+    this.htmlToImagePromise$.next(
+      htmlToImage.toJpeg(
+        this.codeRenderer.elementRef.nativeElement,
+        this.renderOptions
+      )
+    );
+  }
 }
 
 const testNotes = `# Wish you were here

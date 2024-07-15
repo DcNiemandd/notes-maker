@@ -20,13 +20,25 @@
   }
 }
 
+.controls {
+  display: flex;
+  flex-flow: column;
+  align-items: stretch;
+  gap: 8px;
+  max-width: 600px;
+}
+
+.buttons,
+.code {
+  padding: 8px;
+  background-color: white;
+}
+
 .code {
   resize: none;
   outline: none;
   border: none;
-  padding: 8px;
-  max-width: 600px;
-  background-color: white;
+  flex-grow: 1;
 }
 
 .rendered {

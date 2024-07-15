@@ -1,0 +1,23 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+.aspect-keeper {
+  border: 8px black solid;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  margin-inline: auto;
+}
+
+.code-content {
+  display: flex;
+  flex-flow: row wrap;
+  padding: 8px;
+
+  background-color: white;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 8px;
+}
