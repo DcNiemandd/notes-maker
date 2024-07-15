@@ -28,7 +28,7 @@
   max-width: 600px;
 }
 
-.buttons {
+.settings {
   display: flex;
   flex-flow: column;
   gap: 8px;
@@ -44,10 +44,20 @@
   }
 }
 
-.buttons,
+.settings,
 .code {
   padding: 8px;
   background-color: white;
+}
+
+.buttons {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 8px;
+
+  & > * {
+    flex: 1 0 calc((100% - 16px) / 3);
+  }
 }
 
 .code {

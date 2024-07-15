@@ -18,7 +18,8 @@ import FileSaver from 'file-saver';
 export class AppComponent {
   protected aspectRatio: string = '10/16';
   protected code: string = povesteHoVejs;
-  protected scale: number = 1.7;
+  protected scale: number = 1.75;
+  protected isSideTitle: boolean = true;
   protected columns: number = 1;
   private readonly renderOptions: Options = {
     quality: 1,

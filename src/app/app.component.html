@@ -1,35 +1,46 @@
 <div class="container">
   <div class="controls">
-    <div class="buttons">
-      <div class="input input-aspect-ratio"><label for="aspectRatio">Aspect ratio</label>
+    <div class="settings">
+      <div class="input input-aspect-ratio">
+        <label for="aspectRatio">Aspect ratio</label>
         <input #aspectRatioInput
                id="aspectRatio"
                type="text"
-               class="aspect-ratio"
                [value]="aspectRatio"
                (change)="aspectRatio = aspectRatioInput.value" />
       </div>
-      <div class="input input-scale"><label for="scale">Scale</label>
+      <div class="input input-scale">
+        <label for="scale">Scale</label>
         <input #scaleInput
                id="scale"
                type="number"
-               class="aspect-ratio"
                step="0.025"
                min="0.5"
                [value]="scale"
                (input)="scale = toNumber(scaleInput.value)" />
       </div>
-      <div class="input input-columns"><label for="columns">Columns</label>
+      <div class="input input-columns">
+        <label for="columns">Columns</label>
         <input #columnsInput
                id="columns"
                type="number"
-               class="aspect-ratio"
                min="1"
                max="3"
                [value]="columns"
                (input)="columns = toNumber(columnsInput.value)" />
       </div>
-      <button (click)="saveAsJpeg()">Save as image</button>
+      <div class="input input-side-title">
+        <label for="side-title">Title on the side</label>
+        <input #sideTitleInput
+               id="side-title"
+               type="checkbox"
+               [checked]="isSideTitle"
+               (input)="isSideTitle = sideTitleInput.checked" />
+      </div>
+      <div class="buttons">
+        <button (click)="saveAsJpeg()">Save as image</button>
+        <button>Pointless button</button>
+      </div>
     </div>
     <textarea #codeTA
               name="code"
@@ -42,6 +53,7 @@
     <app-code-renderer [parsedCode]="code | codeParser"
                        [aspectRatio]="aspectRatio"
                        [scale]="scale"
+                       [isSideTitle]="isSideTitle"
                        [columns]="columns"></app-code-renderer>
   </div>
 </div>

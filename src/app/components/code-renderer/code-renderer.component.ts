@@ -41,6 +41,7 @@ export class CodeRendererComponent {
   @Input()
   public columns: number = 1;
   @Input({ required: true }) public parsedCode!: ParsedCode;
+  @Input() public isSideTitle: boolean = false;
 
   @ViewChild('toPrintRef', { static: true })
   public printRef!: ElementRef<HTMLDivElement>;
