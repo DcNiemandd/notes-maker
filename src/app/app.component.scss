@@ -39,6 +39,9 @@
   flex-flow: row nowrap;
   justify-content: space-between;
   gap: 8px;
+  label {
+    flex-grow: 1;
+  }
 }
 
 .buttons,

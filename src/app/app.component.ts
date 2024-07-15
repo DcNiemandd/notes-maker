@@ -15,8 +15,10 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   imports: [CodeRendererComponent, CodeParserPipe],
 })
 export class AppComponent {
-  protected code: string = testNotes;
   protected aspectRatio: string = '10/16';
+  protected code: string = povesteHoVejs;
+  protected scale: number = 1.7;
+  protected columns: number = 1;
   private readonly renderOptions: Options = {
     quality: 1,
     pixelRatio: 3,
@@ -54,9 +56,62 @@ export class AppComponent {
       )
     );
   }
+
+  protected toNumber(v: string): number {
+    return Number(v);
+  }
 }
 
-const testNotes = `# Wish you were here
+const povesteHoVejs = `# Pověste ho vejš
+## Harlej
+
+R1:: Pověste ho [F#mi]vejš, ať se houpá,
+pověste ho [A]vejš, ať má [E]dost,
+    pověste ho [Hmi]vejš, ať se [F#mi]houpá,
+že tu [E]byl nezvanej [F#mi]host.
+
+
+1.: Pověst[F#mi]e ho že byl jinej,
+ že tu s nám[A]a dejchal stejnej [E]vzduch
+   pověs[Hmi]te ho, že byl [F#mi]línej
+a tak [E]trochu dobro[F#mi]druh.
+
+2.: Pověste ho za El Paso,
+za Snídani v trávě a Lodní zvon,
+   za to, že neoplýval krásou,
+   že měl [D]country rád
+a že se [C#7]uměl smát
+i [F#mi]vám.
+
+ R2::  Nad hla[A]vou mi slunce pá[E]lí,
+konec [Hmi]můj nic neod[A]dá[E]lí,
+      do mých [A]snů se dívám zdá[E]li
+      a do[Hmi] uší mi stále zní
+[C#7]tahle píseň poslední.
+
+3.: Pověste ho za tu banku,
+v který zruinoval svůj vklad,
+   za to, že nikdy nevydržel
+na jednom místě stát.
+
+     [F#mi  A  E  Hmi  F#mi  E  F#mi]
+
+R2+R1::Nad hla[A]vou mi slunce pá[E]lí
+
+
+4.: Pověste ho za tu jistou,
+který nesplnil svůj slib,
+   že byl zarputilým optimistou,
+ a tak dělal spoustu chyb
+
+5.: Pověste ho, že se koukal
+a že hodně jed a hodně pil,
+   že dal přednost jarním loukám
+   a pak se oženil a pak se usadil a žil
+
+R2+R1::Nad hla[A]vou mi slunce pá[E]lí`;
+
+const wishYouWereHere = `# Wish you were here
 ## Pink Floyd
 
 [||: Em G Em G Em A Em A G G :||]

@@ -12,6 +12,7 @@ export class CodeParserPipe implements PipeTransform {
     const parsed: ParsedCode = {
       sections: [],
     };
+    let labelWidth = 0;
 
     let tempSection: ParsedCodeSection = {
       lines: [],
@@ -43,12 +44,13 @@ export class CodeParserPipe implements PipeTransform {
         return;
       }
       // Line with chords
-      const labelEnd = row.indexOf(':');
+      const labelEnd = row.lastIndexOf(':');
       const firstChord = row.indexOf('[');
       const line: ParsedCodeLine = {};
       if (labelEnd !== -1 && (firstChord === -1 || labelEnd < firstChord)) {
         newSection();
         tempSection.label = row.substring(0, labelEnd);
+        labelWidth = Math.max(labelEnd, labelWidth);
         row = row.substring(labelEnd + 1);
       }
 
@@ -69,6 +71,8 @@ export class CodeParserPipe implements PipeTransform {
       line.lyrics = row;
       tempSection.lines.push(line);
     });
+    newSection();
+    parsed.labelWidth = labelWidth;
     return parsed;
   }
 }
@@ -77,6 +81,7 @@ export interface ParsedCode {
   title?: string;
   subtitle?: string;
   sections: ParsedCodeSection[];
+  labelWidth?: number;
 }
 
 export interface ParsedCodeSection {

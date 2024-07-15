@@ -15,5 +15,6 @@ import { RenderLineComponent } from '../render-line/render-line.component';
 })
 export class RenderSectionComponent implements ParsedCodeSection {
   @Input() public label?: string | undefined;
+  @Input() public labelWidth?: number | undefined;
   @Input({ required: true }) public lines: ParsedCodeLine[] = [];
 }

@@ -1,6 +1,6 @@
-@if (label) {
-<h4 [class.top-margin]="lines[0].chords?.length">{{label}}</h4>
-}
+<h4 [class.top-margin]="lines[0].chords?.length"
+    [style.width]="labelWidth + 'ch'">{{label}}</h4>
+
 <div class="sections">
   @for (line of lines; track line) {
   <app-render-line [chords]="line.chords"

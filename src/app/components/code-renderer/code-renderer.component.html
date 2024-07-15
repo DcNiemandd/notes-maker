@@ -1,12 +1,15 @@
-<div class="aspect-keeper"
-     [appAspectKeeper]="aspectRatio">
+<app-aspect-keeper [aspectRatio]="aspectRatio">
   <div class="code-content">
-    @if (parsedCode.title) {<h1 class="title">{{parsedCode.title}}</h1>}
-    @if (parsedCode.subtitle) {<h2 class="subtitle">{{parsedCode.subtitle}}</h2>}
-
-    @for (section of parsedCode.sections; track section) {
-    <app-render-section [label]="section.label"
-                        [lines]="section.lines"></app-render-section>
-    }
+    <div class="titles">
+      @if (parsedCode.title) {<h1 class="title">{{parsedCode.title}}</h1>}
+      @if (parsedCode.subtitle) {<h2 class="subtitle">{{parsedCode.subtitle}}</h2>}
+    </div>
+    <div class="sections">
+      @for (section of parsedCode.sections; track section) {
+      <app-render-section [label]="section.label"
+                          [lines]="section.lines"
+                          [labelWidth]="parsedCode.labelWidth"></app-render-section>
+      }
+    </div>
   </div>
-</div>
+</app-aspect-keeper>

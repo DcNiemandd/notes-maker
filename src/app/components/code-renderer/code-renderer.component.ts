@@ -2,17 +2,18 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
+  HostBinding,
   inject,
   Input,
 } from '@angular/core';
-import { AspectKeeperDirective } from 'src/app/directives/aspect-keeper.directive';
 import { ParsedCode } from 'src/app/pipes/code-parser.pipe';
+import { AspectKeeperComponent } from '../aspect-keeper/aspect-keeper.component';
 import { RenderSectionComponent } from '../render-section/render-section.component';
 
 @Component({
   selector: 'app-code-renderer',
   standalone: true,
-  imports: [RenderSectionComponent, AspectKeeperDirective],
+  imports: [RenderSectionComponent, AspectKeeperComponent],
   templateUrl: './code-renderer.component.html',
   styleUrls: ['./code-renderer.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -32,6 +33,12 @@ export class CodeRendererComponent {
     },
   })
   public aspectRatio: number = 10 / 16;
+  @HostBinding('style.--scale')
+  @Input()
+  public scale: number = 1;
+  @HostBinding('style.--columns')
+  @Input()
+  public columns: number = 1;
   @Input({ required: true }) public parsedCode!: ParsedCode;
 
   public elementRef: ElementRef = inject(ElementRef);
